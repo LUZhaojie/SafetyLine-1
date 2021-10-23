@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder,FormGroup,Validators} from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { LoginService } from './login.service'
+import { Router } from '@angular/router'
+import { LoginForm } from "./login.type"
+
+// ng g c login
 
 @Component({
   selector: 'app-login',
@@ -8,24 +13,40 @@ import {FormBuilder,FormGroup,Validators} from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private loginService: LoginService,private router: Router) {}
 
   loginForm!: FormGroup;
 
   submitForm(): void {
-    for (const i in this.loginForm.controls) {
-      if (this.loginForm.controls.hasOwnProperty(i)) {
-        this.loginForm.controls[i].markAsDirty();
+    const loginForm = this.loginForm;
+    const{ controls } = loginForm;
+
+    for (const i in controls) {
+      if (controls.hasOwnProperty(i)) {
+        controls[i].markAsDirty();
         // verifier les inputs ne sont pas vides
-        this.loginForm.controls[i].updateValueAndValidity();
+        controls[i].updateValueAndValidity();
         // changer la color des characteres
       }
     }
-    if (!this.loginForm.valid){
+
+    if (!loginForm.valid){
       console.log('Login failed!');
       return;
     }
-    console.log('Login success!',this.loginForm.value);
+    //console.log('Login success!',this.loginForm.value);
+    const {username, password} = loginForm.value;
+
+    const loginParameters: LoginForm = {
+      username,
+      password
+    }
+    this.loginService.login(loginParameters).subscribe((res: any) => {
+      console.log('Login success!');
+      localStorage.setItem('itcast-token', res.token);
+      this.router.navigate(['/home'])
+    }
+    );
   }
 
 
