@@ -1,25 +1,34 @@
 <div class="login-wrapper" nz-row nzJustify="space-around" nzAlign="middle">
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+<form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your username!">
+    <nz-form-control nzHasFeedback [nzErrorTip]="combineTpl">
       <nz-input-group nzPrefixIcon="user">
         <input type="text" nz-input formControlName="userName" placeholder="Username" />
       </nz-input-group>
+      <ng-template #combineTpl let-control>
+        <ng-container *ngIf="control.hasError('maxlength')">MaxLength is 12 </ng-container>
+        <ng-container *ngIf="control.hasError('minlength')">MinLength is 3 </ng-container>
+        <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
+      </ng-template>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-control nzErrorTip="Please input your Password!">
+    <nz-form-control nzHasFeedback [nzErrorTip]="pass">
       <nz-input-group nzPrefixIcon="lock">
         <input type="password" nz-input formControlName="password" placeholder="Password" />
       </nz-input-group>
+      <ng-template #pass let-control>
+        <ng-container *ngIf="control.hasError('pattern')">Must be combined with numbers and characters</ng-container>
+        <ng-container *ngIf="control.hasError('required')">Please input your Password!</ng-container>
+      </ng-template>
     </nz-form-control>
   </nz-form-item>
   <div nz-row class="login-form-margin">
-    <div nz-col [nzSpan]="12">
+    <!--<div nz-col [nzSpan]="12">
       <label nz-checkbox formControlName="remember">
         <span>Remember me</span>
       </label>
-    </div>
+    </div>-->
     <div nz-col [nzSpan]="12">
       <a class="login-form-forgot">Forgot password</a>
     </div>

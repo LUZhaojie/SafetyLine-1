@@ -10,24 +10,31 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  validateForm!: FormGroup;
+  loginForm!: FormGroup;
 
   submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      if (this.validateForm.controls.hasOwnProperty(i)) {
-        if (this.validateForm.controls.hasOwnProperty(i)){
-          this.validateForm.controls[i].markAsDirty();
-          this.validateForm.controls[i].updateValueAndValidity();
-        }
+    for (const i in this.loginForm.controls) {
+      if (this.loginForm.controls.hasOwnProperty(i)) {
+        this.loginForm.controls[i].markAsDirty();
+        // verifier les inputs ne sont pas vides
+        this.loginForm.controls[i].updateValueAndValidity();
+        // changer la color des characteres
       }
     }
+    if (!this.loginForm.valid){
+      console.log('Login failed!');
+      return;
+    }
+    console.log('Login success!',this.loginForm.value);
   }
 
+
+
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      remember: [true]
+    this.loginForm = this.fb.group({
+      userName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      password: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{8,20}$/)]],
+      //remember: [false]
     });
   }
 
