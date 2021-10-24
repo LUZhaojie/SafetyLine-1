@@ -20,6 +20,10 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzMenuModule} from "ng-zorro-antd/menu";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 registerLocaleData(zh);
 
@@ -43,9 +47,15 @@ registerLocaleData(zh);
     NzInputModule,
     NzLayoutModule,
     NzIconModule,
-    NzMenuModule
+    NzMenuModule,
+    NzToolTipModule,
+    NzAvatarModule,
+    NzPopconfirmModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN},
+    { provide: NzMessageService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

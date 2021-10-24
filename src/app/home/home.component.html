@@ -1,29 +1,46 @@
 <nz-layout class="layout">
-  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzBreakpoint="lg" [nzCollapsedWidth]="0">
+  <nz-sider nzTheme="light" nzCollapsible [(nzCollapsed)]="isCollapsed" nzBreakpoint="lg" [nzCollapsedWidth]="0">
     <div class="logo">
-      <img src="src/assets/safetyline.png" alt = "safetyline">
+      <img alt="logo" src="./src/assets/safetyline.png">
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li nz-menu-item>
-        <i nz-icon nzType="user"></i>
-        <span>nav 1</span>
+    <ul nz-menu nzMode="inline" nzTheme="light" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzTitle="Utilisateur" nzIcon="user">
+        <ul>
+          <li nz-menu-item>Ajouter</li>
+          <li nz-menu-item>Supprimer</li>
+        </ul>
       </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="video-camera"></i>
-        <span>nav 2</span>
+      <li nz-submenu nzTitle="Chiffrage" nzIcon="setting">
+        <ul>
+          <li nz-menu-item>Valider</li>
+          <li nz-menu-item>Modifier</li>
+          <li nz-menu-item>Voir tous</li>
+        </ul>
       </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="upload"></i>
-        <span>nav 3</span>
-      </li>
-      <li nz-menu-item>
-        <i nz-icon nzType="user"></i>
-        <span>nav 4</span>
+      <li nz-submenu nzTitle="Authentication" nzIcon="lock">
+        <ul>
+          <li nz-menu-item>Ajouter admin</li>
+        </ul>
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
-    <nz-header></nz-header>
+    <nz-header>
+      <div nz-row nzJustify="end">
+        <div nz-col nzSpan="4">
+          <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure?"
+            nzOkText="ok"
+            nzCancelText="cancel"
+            (nzOnConfirm)="logout()"
+            href="#" > &nbsp;
+            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;quitter
+          </a>
+        </div>
+      </div>
+    </nz-header>
     <nz-content>
       <div class="inner-content">Content</div>
     </nz-content>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeService } from "./home.service";
+import { Router } from "@angular/router";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 // ng g c home
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,9 +12,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private homeService: HomeService, private router: Router, private nzmsg:NzMessageService) { }
 
   isCollapsed = false;
+
+  logout() {
+    this.homeService.logout().subscribe(
+      res =>{
+        localStorage.removeItem('itcast-token');
+        console.log('Exit success!',res);
+        this.router.navigate(['/login']);
+      },
+      (err) => {
+        console.log('Exit failed!',err);
+        this.nzmsg.create('warning','Veuillez ressayer!');
+      }
+      );
+  }
 
   ngOnInit(): void {
   }
