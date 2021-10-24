@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  isCollapsed = false;
+
   ngOnInit(): void {
   }
 

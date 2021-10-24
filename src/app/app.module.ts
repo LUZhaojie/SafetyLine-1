@@ -17,6 +17,9 @@ import {NzFormModule} from "ng-zorro-antd/form";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {NzLayoutModule} from "ng-zorro-antd/layout";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzMenuModule} from "ng-zorro-antd/menu";
 
 registerLocaleData(zh);
 
@@ -37,7 +40,10 @@ registerLocaleData(zh);
     NzFormModule,
     NzButtonModule,
     NzCheckboxModule,
-    NzInputModule
+    NzInputModule,
+    NzLayoutModule,
+    NzIconModule,
+    NzMenuModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
