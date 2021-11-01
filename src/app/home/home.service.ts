@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { URL } from "../config";
+import { URL,GITLINK } from "../config";
 
 // ng g s home/home
 @Injectable({

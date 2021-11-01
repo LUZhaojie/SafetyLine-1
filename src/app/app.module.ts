@@ -24,6 +24,7 @@ import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import { NzMessageService } from "ng-zorro-antd/message";
+import {NzCardModule} from "ng-zorro-antd/card";
 
 registerLocaleData(zh);
 
@@ -33,25 +34,26 @@ registerLocaleData(zh);
     LoginComponent,
     HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RouterModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    NzFormModule,
-    NzButtonModule,
-    NzCheckboxModule,
-    NzInputModule,
-    NzLayoutModule,
-    NzIconModule,
-    NzMenuModule,
-    NzToolTipModule,
-    NzAvatarModule,
-    NzPopconfirmModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RouterModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        NzFormModule,
+        NzButtonModule,
+        NzCheckboxModule,
+        NzInputModule,
+        NzLayoutModule,
+        NzIconModule,
+        NzMenuModule,
+        NzToolTipModule,
+        NzAvatarModule,
+        NzPopconfirmModule,
+        NzCardModule
+    ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN},
     { provide: NzMessageService}
