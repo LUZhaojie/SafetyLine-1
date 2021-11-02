@@ -11,12 +11,12 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   logout(){
-    const token = localStorage.getItem('itcast-token');
+    //const token = localStorage.getItem('itcast-token');
     return this.http.delete(`${URL}/tokens`,
       {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        //headers: {
+        //  Authorization: `Bearer ${token}`
+        //}
       });
   }
 

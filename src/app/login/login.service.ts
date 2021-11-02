@@ -12,7 +12,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(loginForm: LoginForm){
-    return this.http.post(`${URL}/tokens`, loginForm);
+    return this.http.post(`${URL}/tokens`, loginForm, {
+      headers:{
+        'No-auth': 'TRUE'
+      }
+    });
   }
 
 }

@@ -1,22 +1,31 @@
-<nz-table #listUser [nzData]="listOfUser" [nzFrontPagination]="true" [nzPageSize]="pageSize" [nzPageIndex]="curPage">
+<nz-table #listUser [nzData]="listOfUser" [nzFrontPagination]="true"
+          [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
   <thead>
   <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Mail</th>
     <th>Time</th>
+    <th>Operation</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of listUser.data">
-    <td>{{ user.id }}</td>
+  <tr *ngFor="let user of listUser.data; let i = index; trackBy: trackByUserId">
+    <td>{{ i }}</td>
     <td>{{ user.name }}</td>
     <td>{{ user.mail }}</td>
     <td>{{ user.time }}</td>
     <td>
-      <a>Action 一 {{ user.name }}</a>
+      <a>ajouter</a>
       <nz-divider nzType="vertical"></nz-divider>
-      <a>Delete</a>
+      <a
+        nz-popconfirm
+        nzPopconfirmTitle="Are you sure?"
+        nzOkText="ok"
+        nzCancelText="cancel"
+        (nzOnConfirm)="handleDel(user.id)"
+        (nzOnCancel)="handleDelCan()"
+      >supprimer</a>
     </td>
   </tr>
   </tbody>

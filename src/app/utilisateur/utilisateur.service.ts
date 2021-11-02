@@ -11,16 +11,24 @@ export class UtilisateurService {
 
   constructor(private http: HttpClient) { }
 
+  delUser(id: number){
+    //const token = localStorage.getItem('itcast-token');
+    return this.http.delete(`${URL}/utilisateur/${id}`,{
+      //headers: {
+      //  Authorization: `Bearer ${token}`
+      //}
+    });
+  }
 
   fetchData(curPage: number, pageSize: number){
-    const token = localStorage.getItem('itcast-token');
+    //const token = localStorage.getItem('itcast-token');
     const userURL = `${URL}/utilisateur?_page=${curPage}&_limit=${pageSize}`;
     return this.http.get<User[]>(userURL,
       {
         observe: 'response',
-        headers:{
-          Authorization: `Bearer ${token}`
-        }
+        //headers:{
+        //  Authorization: `Bearer ${token}`
+        //}
       }
       )
   }

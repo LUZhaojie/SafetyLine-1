@@ -10,7 +10,7 @@ import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule} from '@angular/forms'
 import {NzFormModule} from "ng-zorro-antd/form";
@@ -25,6 +25,7 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import { NzMessageService } from "ng-zorro-antd/message";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {AuthInterceptor} from "./http-interceptors/auth.interceptor";
 
 registerLocaleData(zh);
 
@@ -56,7 +57,11 @@ registerLocaleData(zh);
     ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN},
-    { provide: NzMessageService}
+    { provide: NzMessageService},
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
