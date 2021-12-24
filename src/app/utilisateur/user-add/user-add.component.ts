@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { UtilisateurService } from "../utilisateur.service";
+import { userAddForm} from "./user-add.type";
+import {LoginForm} from "../../login/login.type";
 
 //ng g c utilisateur/user-add
 @Component({
@@ -10,12 +13,13 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 })
 export class UserAddComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
+  constructor(private userService: UtilisateurService,private fb: FormBuilder) {
     this.userAddForm = this.fb.group({
       username: [''],
       email: [''],
       password: [''],
-      checkPassword: ['']
+      checkPassword: [''],
+      role: ['']
     })
   }
 
@@ -55,12 +59,31 @@ export class UserAddComponent implements OnInit {
     }
   }
 
+  addU():void{
+    const userAddForm= this.userAddForm;
+    const {username, email, password, role} = userAddForm.value;
+
+    const addForm: userAddForm = {
+      username,
+      email,
+      password,
+      role
+    }
+    //console.log(addForm)
+    // @ts-ignore
+    this.userService.addUser(addForm).subscribe((res:any)=>
+    {
+      console.log('Add user ',res);
+    })
+  }
+
   ngOnInit(): void {
     this.userAddForm = this.fb.group({
       username: [null, [Validators.required]],
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      role: [null, [Validators.required]],
     });
   }
 }

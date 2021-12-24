@@ -41,10 +41,18 @@ export class LoginComponent implements OnInit {
       username,
       password
     }
+
     this.loginService.login(loginParameters).subscribe((res: any) => {
-      console.log('Login success!');
-      localStorage.setItem('itcast-token', res.token);
-      this.router.navigate(['/home'])
+      if (res){
+        console.log('Login success!');
+        console.log(res)
+        localStorage.setItem('itcast-token', res.token);
+        this.router.navigate(['/home'])
+      }else{
+        console.log('Login failed!');
+        console.log(res)
+        this.router.navigate(['/login'])
+      }
     }
     );
   }
@@ -53,8 +61,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
-      password: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{8,20}$/)]],
+      username: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
+      password: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{6,20}$/)]],
       //remember: [false]
     });
   }

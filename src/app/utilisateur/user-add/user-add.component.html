@@ -46,10 +46,24 @@
       </ng-template>
     </nz-form-control>
   </nz-form-item>
+  <!--confirm role -->
+  <nz-form-item>
+    <nz-form-label
+      [nzSm]="6"
+      [nzXs]="24"
+      nzFor="role"
+      nzRequired
+    >
+      <span>Role</span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your role!" nzHasFeedback>
+      <input nz-input id="role" formControlName="role" />
+    </nz-form-control>
+  </nz-form-item>
   <!--add and ret-->
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="20" [nzOffset]="7">
-      <button nz-button nzType="primary">Ajouter</button>
+      <button nz-button (click)="addU()">Ajouter</button>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <button nz-button (click)="resetForm($event)">Réinitialiser</button>
     </nz-form-control>

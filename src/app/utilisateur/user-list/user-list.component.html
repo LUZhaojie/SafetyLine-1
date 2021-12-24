@@ -5,16 +5,16 @@
     <th>Id</th>
     <th>Name</th>
     <th>Mail</th>
-    <th>Time</th>
+    <th>Role</th>
     <th>Operation</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let user of listUser.data; let i = index; trackBy: trackByUserId">
     <td>{{ i }}</td>
-    <td>{{ user.name }}</td>
-    <td>{{ user.mail }}</td>
-    <td>{{ user.time }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.role }}</td>
     <td>
       <a>ajouter</a>
       <nz-divider nzType="vertical"></nz-divider>

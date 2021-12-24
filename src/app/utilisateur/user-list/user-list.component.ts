@@ -3,6 +3,7 @@ import { UtilisateurService } from "../utilisateur.service";
 import { User } from '../utilisateur.type';
 import { HttpResponse } from "@angular/common/http";
 import { NzMessageService } from "ng-zorro-antd/message";
+import { userAddForm} from "../user-add/user-add.type";
 
 //ng g c utilisateur/user-list
 
@@ -16,37 +17,8 @@ export class UserListComponent implements OnInit {
   constructor(private userService: UtilisateurService, private nzmsgService: NzMessageService) { }
 
 
-  //listOfUser: User[] | undefined;
-
-  listOfUser: User[] = [
-    {
-      id: 1, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 2, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 3, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 4, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 5, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 6, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },{
-      id: 7, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },{
-      id: 8, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },{
-      id: 9, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    },
-    {
-      id: 10, name: 'YANG', mail: 'ch@gmail.com', time: 10
-    }
-  ]
+  // @ts-ignore
+  listOfUser: User[] = this.fetchUser();
 
   curPage = 1;
   pageSize = 5;
@@ -56,7 +28,9 @@ export class UserListComponent implements OnInit {
     console.log('Delete!',id);
     this.userService.delUser(id).subscribe(res =>{
         console.log(res);
-        this.listOfUser = this.listOfUser.filter(user => user.id !== id);
+
+        // @ts-ignore
+      this.listOfUser = this.listOfUser.filter(user => user.id !== id);
     })
   }
 
@@ -72,7 +46,7 @@ export class UserListComponent implements OnInit {
   fetchUser(){
     this.userService.fetchData(this.curPage,this.pageSize).subscribe((res: HttpResponse<User[]>)=>
     {
-      console.log(res);
+      console.log('Get data ',res);
       //this.total = +res.headers.get('X-Total-Count');
       // @ts-ignore
       this.listOfUser = res.body;

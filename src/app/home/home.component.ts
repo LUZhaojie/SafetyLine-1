@@ -17,6 +17,11 @@ export class HomeComponent implements OnInit {
   isCollapsed = false;
 
   logout() {
+    console.log('Try to logout!')
+    localStorage.removeItem('itcast-token')
+    console.log('Exit success!');
+    this.router.navigate(['/login']);
+    /*
     this.homeService.logout().subscribe(
       res =>{
         localStorage.removeItem('itcast-token');
@@ -28,6 +33,8 @@ export class HomeComponent implements OnInit {
         this.nzmsg.create('warning','Veuillez ressayer!');
       }
       );
+
+     */
   }
 
   ngOnInit(): void {

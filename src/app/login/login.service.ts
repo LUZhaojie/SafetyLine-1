@@ -12,7 +12,8 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(loginForm: LoginForm){
-    return this.http.post(`${URL}/tokens`, loginForm, {
+    console.log(loginForm)
+    return this.http.post(`${URL}/user/login?username=${loginForm.username}&password=${loginForm.password}`, loginForm, {
       headers:{
         'No-auth': 'TRUE'
       }

@@ -15,14 +15,11 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     console.log('Auth Guard!');
     const token = localStorage.getItem('itcast-token');
-    return true;
-    /*if (!!token){
+    if (!!token){
       return true;
     }
     this.router.navigate(['/login']);
     return false;
-
-     */
   }
 
 }

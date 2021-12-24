@@ -9,15 +9,17 @@ import { URL,GITLINK } from "../config";
 export class HomeService {
 
   constructor(private http: HttpClient) { }
-
+  /*
   logout(){
-    //const token = localStorage.getItem('itcast-token');
-    return this.http.delete(`${URL}/tokens`,
+    const token = localStorage.getItem('itcast-token');
+    return this.http.post(`${URL}/tokens`,
       {
-        //headers: {
-        //  Authorization: `Bearer ${token}`
-        //}
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
   }
+
+   */
 
 }

@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { UtilisateurRoutingModule } from './utilisateur-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
-import { UserSupComponent } from './user-sup/user-sup.component';
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
@@ -19,8 +18,7 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 @NgModule({
   declarations: [
     UserListComponent,
-    UserAddComponent,
-    UserSupComponent
+    UserAddComponent
   ],
   imports: [
     CommonModule,
