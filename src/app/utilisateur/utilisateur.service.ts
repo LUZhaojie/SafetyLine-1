@@ -14,12 +14,23 @@ export class UtilisateurService {
   constructor(private http: HttpClient) { }
 
   delUser(id: number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('id-token');
     return this.http.delete(`${URL}/user/delete?id=${id}`,{
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
+  }
+
+  changeRoleUser(id:number){
+    const  token = localStorage.getItem('role-token');
+    return this.http.post(`${URL}/user/roleChange?id=${id}`,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
   }
 
   fetchData(curPage: number, pageSize: number){

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from "./user-list/user-list.component";
 import { UserAddComponent } from "./user-add/user-add.component";
-import { UserSupComponent } from "./user-sup/user-sup.component";
 //ng g m utilisateur --routing
 
 const routes: Routes = [
@@ -14,10 +13,6 @@ const routes: Routes = [
     path: 'add',
     component: UserAddComponent
   },
-  {
-    path: 'sup',
-    component: UserSupComponent
-  }
 ];
 
 @NgModule({

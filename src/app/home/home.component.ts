@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
   logout() {
     console.log('Try to logout!')
     localStorage.removeItem('itcast-token')
+    localStorage.removeItem('username-token');
+    localStorage.removeItem('role-token');
+    localStorage.removeItem('email-token');
+    localStorage.removeItem('id-token');
     console.log('Exit success!');
     this.router.navigate(['/login']);
     /*

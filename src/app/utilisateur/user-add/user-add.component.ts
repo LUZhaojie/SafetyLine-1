@@ -4,6 +4,7 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { UtilisateurService } from "../utilisateur.service";
 import { userAddForm} from "./user-add.type";
 import {LoginForm} from "../../login/login.type";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 //ng g c utilisateur/user-add
 @Component({
@@ -13,7 +14,7 @@ import {LoginForm} from "../../login/login.type";
 })
 export class UserAddComponent implements OnInit {
 
-  constructor(private userService: UtilisateurService,private fb: FormBuilder) {
+  constructor(private userService: UtilisateurService,private fb: FormBuilder,private nzmsgService: NzMessageService) {
     this.userAddForm = this.fb.group({
       username: [''],
       email: [''],
@@ -69,12 +70,19 @@ export class UserAddComponent implements OnInit {
       password,
       role
     }
-    //console.log(addForm)
+
+    const token = localStorage.getItem('role-token')
     // @ts-ignore
-    this.userService.addUser(addForm).subscribe((res:any)=>
-    {
-      console.log('Add user ',res);
-    })
+    if (token != 1){
+      console.log(token)
+      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+    }else {
+      //console.log(addForm)
+      // @ts-ignore
+      this.userService.addUser(addForm).subscribe((res: any) => {
+        console.log('Add user ', res);
+      })
+    }
   }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let user of listUser.data; let i = index; trackBy: trackByUserId">
-    <td>{{ i }}</td>
+    <td>{{ user.id }}</td>
     <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
     <td>{{ user.role }}</td>
@@ -26,6 +26,15 @@
         (nzOnConfirm)="handleDel(user.id)"
         (nzOnCancel)="handleDelCan()"
       >supprimer</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a
+        nz-popconfirm
+        nzPopconfirmTitle="Are you sure?"
+        nzOkText="ok"
+        nzCancelText="cancel"
+        (nzOnConfirm)="handleChange(user.id)"
+        (nzOnCancel)="handleRoleCan()"
+      >change role</a>
     </td>
   </tr>
   </tbody>

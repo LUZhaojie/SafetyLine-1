@@ -3,7 +3,6 @@ import { UtilisateurService } from "../utilisateur.service";
 import { User } from '../utilisateur.type';
 import { HttpResponse } from "@angular/common/http";
 import { NzMessageService } from "ng-zorro-antd/message";
-import { userAddForm} from "../user-add/user-add.type";
 
 //ng g c utilisateur/user-list
 
@@ -18,20 +17,30 @@ export class UserListComponent implements OnInit {
 
 
   // @ts-ignore
-  listOfUser: User[] = this.fetchUser();
+  listOfUser: User[];
 
   curPage = 1;
   pageSize = 5;
   //total: number;
 
   handleDel(id: number){
-    console.log('Delete!',id);
-    this.userService.delUser(id).subscribe(res =>{
-        console.log(res);
-
-        // @ts-ignore
-      this.listOfUser = this.listOfUser.filter(user => user.id !== id);
-    })
+    const token = localStorage.getItem('role-token')
+    // @ts-ignore
+    if (token != 1){
+      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+    }else {
+      const id_token = localStorage.getItem('id-token')
+      // @ts-ignore
+      if (id == id_token){
+        this.nzmsgService.info('You can not delete yourself!',{ nzDuration: 1000})
+      }else {
+        this.userService.delUser(id).subscribe(res => {
+          console.log('Delete!', id);
+          // @ts-ignore
+          this.listOfUser = this.listOfUser.filter(user => user.id !== id);
+        })
+      }
+    }
   }
 
   handleDelCan(){
@@ -39,9 +48,35 @@ export class UserListComponent implements OnInit {
     this.nzmsgService.info('Cancel delete!',{ nzDuration: 1000});
   }
 
+  handleChange(id: number){
+    const token = localStorage.getItem('role-token')
+    const id_token = localStorage.getItem('id-token')
+    // @ts-ignore
+    if (id == id_token){
+      this.nzmsgService.info('You can not change your role!',{ nzDuration: 1000});
+    }else{
+      // @ts-ignore
+      if (token != 1){
+        this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+      }else{
+        this.userService.changeRoleUser(id).subscribe(res=>{
+          console.log('Change role', id);
+        })
+        this.fetchUser()
+        location.reload()
+      }
+    }
+  }
+
+  handleRoleCan() {
+    console.log('Cancel change role!');
+    this.nzmsgService.info('Cancel delete!',{ nzDuration: 1000});
+  }
+
   trackByUserId(id: number, user: User){
     return user.id
   }
+
 
   fetchUser(){
     this.userService.fetchData(this.curPage,this.pageSize).subscribe((res: HttpResponse<User[]>)=>
@@ -54,7 +89,8 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.fetchUser();
+    this.fetchUser();
   }
+
 
 }

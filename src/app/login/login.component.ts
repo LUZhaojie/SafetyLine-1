@@ -45,8 +45,12 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginParameters).subscribe((res: any) => {
       if (res){
         console.log('Login success!');
-        console.log(res)
-        localStorage.setItem('itcast-token', res.token);
+        console.log('res',res)
+        localStorage.setItem('itcast-token', res);
+        localStorage.setItem('username-token', res.username);
+        localStorage.setItem('role-token', res.role);
+        localStorage.setItem('email-token', res.email);
+        localStorage.setItem('id-token', res.id);
         this.router.navigate(['/home'])
       }else{
         console.log('Login failed!');
