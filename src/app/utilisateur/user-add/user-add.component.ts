@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { UtilisateurService } from "../utilisateur.service";
-import { userAddForm} from "./user-add.type";
-import {LoginForm} from "../../login/login.type";
-import {NzMessageService} from "ng-zorro-antd/message";
+import { userAddForm } from "./user-add.type";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 //ng g c utilisateur/user-add
 @Component({

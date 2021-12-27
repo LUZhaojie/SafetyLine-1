@@ -14,15 +14,16 @@
     <td>{{ issue.title }}</td>
     <td>{{ issue.description }}</td>
     <td>
-      <a (click)="showModal()">Chiffrer</a>
+      <a (click)="showModal(issue.id)">Chiffrer</a>
     </td>
   </tr>
   </tbody>
 </nz-table>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrement" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Confrim"
+          nzCancelText="Cancel">
   <ng-container *nzModalContent>
-    <p>Content one</p>
-    <p>Content two</p>
-    <p>Content three</p>
+    <label>
+      <input nz-input placeholder="1d3h" [(ngModel)]="chiffrement" nzHasFeedback/>
+    </label>
   </ng-container>
 </nz-modal>

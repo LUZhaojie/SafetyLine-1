@@ -26,6 +26,7 @@ import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import { NzMessageService } from "ng-zorro-antd/message";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {AuthInterceptor} from "./http-interceptors/auth.interceptor";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 registerLocaleData(zh);
 
@@ -53,7 +54,8 @@ registerLocaleData(zh);
         NzToolTipModule,
         NzAvatarModule,
         NzPopconfirmModule,
-        NzCardModule
+        NzCardModule,
+        NzModalModule
     ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN},

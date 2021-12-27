@@ -10,12 +10,15 @@ export class IssueService {
 
   constructor(private http: HttpClient) { }
 
-  fetchAllIssue(curPage: number, pageSize: number){
-    const token = localStorage.getItem('itcast-token');
+
+  refreshIssue(){
     const refreshURL = `${URL}/issue/refresh`;
-    this.http.post(refreshURL,{});
-    console.log("Refresh!")
-    const issueURL = `${URL}/issue/all?_page=${curPage}&_limit=${pageSize}`;
+    return this.http.post(refreshURL,{});
+  }
+
+  fetchIssueNonChiffre(curPage: number, pageSize: number){
+    const token = localStorage.getItem('itcast-token');
+    const issueURL = `${URL}/issue/issuelist?_page=${curPage}&_limit=${pageSize}`;
     return this.http.get<Issue[]>(issueURL,
       {
         observe: 'response',
@@ -24,6 +27,80 @@ export class IssueService {
         }
       }
     )
+  }
+
+  fetchIssue(curPage: number, pageSize: number){
+    const token = localStorage.getItem('itcast-token');
+    const issueURL = `${URL}/issue/bytimeorder?_page=${curPage}&_limit=${pageSize}`;
+    return this.http.get<Issue[]>(issueURL,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+  }
+
+  fetchIssueByName(username:string){
+    const token = localStorage.getItem('itcast-token');
+    const issueURL =  `${URL}/issue/editor?username=${username}`
+    return this.http.get<Issue[]>(issueURL,
+      {
+        observe: 'response',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+  }
+
+  getIssueId(id:number){
+    const token = localStorage.getItem('itcast-token');
+    const issueURL = `${URL}/issue?id=${id}`;
+    return this.http.get<Issue>(issueURL,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+  }
+
+  editTime(id:number,time:string){
+    const token = localStorage.getItem('itcast-token');
+    const username = localStorage.getItem('username-token');
+    const timeURL = `${URL}/issue/setEstimateTimeFirst?id=${id}&username=${username}&time=${time}`
+    return this.http.post(timeURL,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+  }
+
+  editTimeAdmin(id:number,time:string){
+    const token = localStorage.getItem('itcast-token');
+    const timeURL = `${URL}/issue/setEstimateTime?id=${id}&time=${time}`
+    return this.http.post(timeURL,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
+  }
+
+  validIssue(id:number){
+    const token = localStorage.getItem('itcast-token');
+    const timeURL = `${URL}/issue/valide?id=${id}`
+    return this.http.post(timeURL,
+      {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      })
   }
 
 }

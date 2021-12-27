@@ -3,7 +3,7 @@ export interface Issue{
   title: string,
   description: string,
   assignee: string,
-  time: number,
+  time: string,
   editor: string,
   humanTimeEstimate: string,
   updated: number

@@ -12,11 +12,16 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
-
+import {NzModalModule} from "ng-zorro-antd/modal";
+import { FormsModule } from '@angular/forms';
+import { IssueValidComponent } from './issue-valid/issue-valid.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
-    IssueListComponent
+    IssueListComponent,
+    IssueValidComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +36,9 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
     NzInputModule,
     NzSelectModule,
     NzButtonModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzModalModule,
+    FormsModule
   ]
 })
 export class IssueModule { }
