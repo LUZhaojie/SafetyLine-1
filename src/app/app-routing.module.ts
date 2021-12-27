@@ -20,7 +20,12 @@ const appRoutes : Routes = [
         path: 'utilisateur',
         // path#module_name
         loadChildren: () => import('./utilisateur/utilisateur.module').then(mod => mod.UtilisateurModule)
+      },
+      {
+        path: 'issue',
+        loadChildren: () => import('./issue/issue.module').then(mod => mod.IssueModule)
       }
+
     ]
   },
   {

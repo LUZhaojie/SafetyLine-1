@@ -1,0 +1,28 @@
+<nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
+          [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Operation</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let issue of listIssue.data; let i = index; trackBy: trackByUserId">
+    <td>{{ issue.id }}</td>
+    <td>{{ issue.title }}</td>
+    <td>{{ issue.description }}</td>
+    <td>
+      <a (click)="showModal()">Chiffrer</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <p>Content one</p>
+    <p>Content two</p>
+    <p>Content three</p>
+  </ng-container>
+</nz-modal>
