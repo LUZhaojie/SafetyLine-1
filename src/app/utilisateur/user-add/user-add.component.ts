@@ -89,7 +89,7 @@ export class UserAddComponent implements OnInit {
       email: [null, [Validators.email, Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      role: [null, [Validators.required]],
+      role: [null, [Validators.required,Validators.max(1),Validators.min(0)]],
     });
   }
 }

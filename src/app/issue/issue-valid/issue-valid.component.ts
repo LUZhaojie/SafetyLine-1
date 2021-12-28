@@ -20,6 +20,11 @@ export class IssueValidComponent implements OnInit {
   chiffrement ?: string;
   id ?: number;
   fetchIssue(){
+
+    this.issueService.refreshIssue().subscribe(res=>{
+      console.log(res)
+    })
+
     this.issueService.fetchIssue(this.curPage,this.pageSize).subscribe((res: HttpResponse<Issue[]>)=>
     {
       console.log('Get data ',res);
