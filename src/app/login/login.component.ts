@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import { LoginService } from './login.service'
 import { Router } from '@angular/router'
 import { LoginForm } from "./login.type"
+import { userAddForm} from "../utilisateur/user-add/user-add.type";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {UtilisateurService} from "../utilisateur/utilisateur.service";
+import {Issue} from "../issue/issue.type";
 
 // ng g c login
 
@@ -13,7 +17,19 @@ import { LoginForm } from "./login.type"
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private loginService: LoginService,private router: Router) {}
+  constructor(private fb: FormBuilder,
+              private loginService: LoginService,
+              private router: Router,
+              private nzmsgService: NzMessageService,
+              private userService: UtilisateurService) {
+    this.userAddForm = this.fb.group({
+      username: [''],
+      email: [''],
+      password: [''],
+      checkPassword: [''],
+      role: ['']
+    })
+  }
 
   loginForm!: FormGroup;
 
@@ -61,13 +77,73 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  userAddForm!: FormGroup;
 
+  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+    if (!control.value) {
+      return { required: true };
+    } else if (control.value !== this.userAddForm.controls.password.value) {
+      return { confirm: true, error: true };
+    }
+    return {};
+  };
+
+  resetForm(e:MouseEvent):void {
+    e.preventDefault();
+    this.userAddForm.reset();
+    for (const i in this.userAddForm.controls) {
+      if (this.userAddForm.controls.hasOwnProperty(i)) {
+        this.userAddForm.controls[i].markAsDirty();
+        this.userAddForm.controls[i].updateValueAndValidity();
+      }
+    }
+  }
+
+  updateConfirmValidator(): void {
+    /** wait for refresh value */
+    Promise.resolve().then(() => this.userAddForm.controls.checkPassword.updateValueAndValidity());
+  }
+
+  isVisible = false;
+
+  showRegisterForm(): void {
+    this.isVisible = true;
+  }
+
+  register():void{
+    const userAddForm= this.userAddForm;
+    const {username, email, password, role} = userAddForm.value;
+
+    const addForm: userAddForm = {
+      username,
+      email,
+      password,
+      role
+    }
+
+    this.userService.addUser(addForm).subscribe((res: any) => {
+      console.log('Add user ', res);
+    })
+    this.isVisible = false;
+  }
+
+  CancelRegister(){
+    this.nzmsgService.info("Cancel register!",{nzDuration:1000})
+    this.isVisible = false
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       username: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(16)]],
       password: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{6,20}$/)]],
       //remember: [false]
+    });
+    this.userAddForm = this.fb.group({
+      username: [null, [Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
+      password: [null, [Validators.required]],
+      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      role: [0, [Validators.required,Validators.max(1),Validators.min(0)]],
     });
   }
 

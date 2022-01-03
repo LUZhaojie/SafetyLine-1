@@ -47,17 +47,18 @@ export class UserComponent implements OnInit {
   listOfIssue:Issue[];
 
   showModal(username:string): void {
-    const token = localStorage.getItem('role-token')
+    const roleToken = localStorage.getItem('role-token')
+    const usernameToken = localStorage.getItem('username-token')
     // @ts-ignore
-    if (token != 1){
-      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
-    }else {
+    if (usernameToken == username || roleToken == 1 ){
       this.isVisible = true;
       this.issueServeice.fetchIssueByName(username).subscribe((res: HttpResponse<Issue[]>) => {
         console.log('Get issues by name', res);
         // @ts-ignore
         this.listOfIssue = res.body;
       })
+    }else {
+      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
     }
   }
 

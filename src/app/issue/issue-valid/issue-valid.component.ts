@@ -40,18 +40,23 @@ export class IssueValidComponent implements OnInit {
 
   isVisible = false;
 
-  showModal(id:number): void {
-    const token = localStorage.getItem('role-token')
+  showModal(id:number, updated:number): void {
+    const roleToken = localStorage.getItem('role-token')
     // @ts-ignore
-    if (token != 1){
+    if (roleToken != 1){
       this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
     }else {
-      this.isVisible = true;
-      // @ts-ignore
-      this.issueService.getIssueId(id).subscribe((issue: Issue) => {
-        //console.log(issue)
-        this.id = id
-      })
+      if (updated == 1){
+        this.nzmsgService.info('This task cant be modified!',{ nzDuration: 1000});
+      }
+      else{
+        this.isVisible = true;
+        // @ts-ignore
+        this.issueService.getIssueId(id).subscribe((issue: Issue) => {
+          //console.log(issue)
+          this.id = id
+        })
+      }
     }
   }
 
@@ -74,18 +79,23 @@ export class IssueValidComponent implements OnInit {
     this.nzmsgService.info('Cancel modification', {nzDuration:1000});
   }
 
-  handleValid(id:number): void{
+  handleValid(id:number,updated:number): void{
     const token = localStorage.getItem('role-token')
     // @ts-ignore
     if (token != 1){
       this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
     }else {
-      this.issueService.validIssue(id).subscribe(res => {
-        console.log(res);
-      })
-      this.fetchIssue()
-      this.nzmsgService.info('Verify validation', {nzDuration: 1000});
-      location.reload();
+      if (updated == 1){
+        this.nzmsgService.info('This task has been valid!',{ nzDuration: 1000});
+      }
+      else {
+        this.issueService.validIssue(id).subscribe(res => {
+          console.log(res);
+        })
+        this.fetchIssue()
+        this.nzmsgService.info('Verify validation', {nzDuration: 1000});
+        location.reload();
+      }
     }
   }
 

@@ -5,9 +5,8 @@
     <th>Id</th>
     <th>Title</th>
     <th>Chiffrement</th>
-    <th>Valid</th>
-    <th>Editor</th>
     <th>EditTime</th>
+    <th>Validation</th>
     <th>Operation</th>
   </tr>
   </thead>
@@ -16,18 +15,17 @@
     <td>{{ issue.id }}</td>
     <td>{{ issue.title }}</td>
     <td>{{ issue.humanTimeEstimate }}</td>
-    <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
-    <td>{{ issue.editor }}</td>
     <td>{{ issue.time }}</td>
+    <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
     <td>
-      <a (click)="showModal(issue.id)">Modifier</a>
+      <a (click)="showModal(issue.id, issue.updated)">Modifier</a>
       <nz-divider nzType="vertical"></nz-divider>
       <a
         nz-popconfirm
         nzPopconfirmTitle="Are you sure?"
         nzOkText="ok"
         nzCancelText="cancel"
-        (nzOnConfirm)="handleValid(issue.id)"
+        (nzOnConfirm)="handleValid(issue.id, issue.updated)"
         (nzOnCancel)="handleValidCan()"
       >Valider</a>
     </td>
