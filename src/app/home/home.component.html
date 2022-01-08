@@ -28,16 +28,34 @@
   <nz-layout>
     <nz-header>
       <div nz-row nzJustify="end">
-        <div nz-col nzSpan="4">
+        <nz-avatar
+          [nzText] = "username"
+          nzSize="large"
+          style="vertical-align: bottom;"></nz-avatar>
+        <!--
+        <div nz-col nzSpan="2">
           <nz-avatar nzIcon="user" style="background-color:#fcfcfc;"></nz-avatar>
           <a
             nz-popconfirm
-            nzPopconfirmTitle="Are you sure?"
-            nzOkText="ok"
-            nzCancelText="cancel"
+            nzPopconfirmTitle="Are you sure to reset all issues?"
+            nzOkText="Ok"
+            nzCancelText="Cancel"
+            (nzOnConfirm)="Reset()"
+            href="#" > &nbsp;
+            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;Reset
+          </a>
+        </div>
+        -->
+        <div nz-col nzSpan="4">
+          <nz-avatar nzIcon="user" style="background-color:#ffffff;"></nz-avatar>
+          <a
+            nz-popconfirm
+            nzPopconfirmTitle="Are you sure to logout?"
+            nzOkText="Ok"
+            nzCancelText="Cancel"
             (nzOnConfirm)="logout()"
             href="#" > &nbsp;
-            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;quitter
+            <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;logout
           </a>
         </div>
       </div>

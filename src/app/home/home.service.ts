@@ -21,5 +21,15 @@ export class HomeService {
   }
 
    */
-
+  reset() {
+    const token = localStorage.getItem('itcast-token');
+    return this.http.post(`${URL}/issue/resetAll`, {
+      headers: {
+        observe: 'response',
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    })
+  }
 }

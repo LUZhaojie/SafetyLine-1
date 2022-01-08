@@ -31,7 +31,7 @@
   <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
 </form>
 </div>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrement" (nzOnCancel)="CancelRegister()" (nzOnOk)="register()" nzOkText="Confrim"
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Register" (nzOnCancel)="CancelRegister()" (nzOnOk)="register()" nzOkText="Confrim"
           nzCancelText="Cancel">
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="userAddForm" (ngSubmit)="submitForm()">

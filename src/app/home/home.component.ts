@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService, private router: Router, private nzmsg:NzMessageService) { }
 
   isCollapsed = false;
+  username !: string;
 
   logout() {
     console.log('Try to logout!')
@@ -41,7 +42,41 @@ export class HomeComponent implements OnInit {
      */
   }
 
-  ngOnInit(): void {
+  Reset() {
+    const role = localStorage.getItem('role-token')
+    // @ts-ignore
+    if (role==1){
+      this.homeService.reset().subscribe(res =>{
+        console.log("Reset all issues!")
+        this.nzmsg.info('All issues are reset!')
+      })
+    }else{
+      this.nzmsg.info("You dont have the access!")
+    }
+
   }
 
+  ngOnInit(): void {
+    // @ts-ignore
+    this.username = localStorage.getItem('username-token')
+
+    let beginTime = 0;
+    let differTime = 0;
+    const interval = 5;
+    window.onunload = function () {
+      differTime = new Date().getTime() - beginTime;
+      if (differTime <= interval) {
+        localStorage.removeItem('itcast-token')
+        localStorage.removeItem('username-token');
+        localStorage.removeItem('role-token');
+        localStorage.removeItem('email-token');
+        localStorage.removeItem('id-token');
+      } else {
+        console.log("F5");
+      }
+    };
+    window.onbeforeunload = function () {
+      beginTime = new Date().getTime();
+    };
+  }
 }
