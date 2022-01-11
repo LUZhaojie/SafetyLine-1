@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor{
     }
     // if not login, add auth in headers
     console.log('HttpInterceptor!');
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const authReq = req.clone(
       {
         headers: req.headers.set('Authorization',`Bearer ${token}`)
@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor{
         () =>{},
         error => {
           if (error.status === 401 || error.status === 0) {
-            localStorage.removeItem('itcast-token');
+            localStorage.removeItem('user-token');
             this.router.navigate(['/login']);
           }
         }

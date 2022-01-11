@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     console.log('Try to logout!')
-    localStorage.removeItem('itcast-token')
+    localStorage.removeItem('user-token')
     localStorage.removeItem('username-token');
     localStorage.removeItem('role-token');
     localStorage.removeItem('email-token');
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     /*
     this.homeService.logout().subscribe(
       res =>{
-        localStorage.removeItem('itcast-token');
+        localStorage.removeItem('user-token');
         console.log('Exit success!',res);
         this.router.navigate(['/login']);
       },
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
         this.nzmsg.info('All issues are reset!')
       })
     }else{
-      this.nzmsg.info("You dont have the access!")
+      this.nzmsg.info("You dont have the access!",{ nzDuration: 1000});
     }
 
   }
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
     window.onunload = function () {
       differTime = new Date().getTime() - beginTime;
       if (differTime <= interval) {
-        localStorage.removeItem('itcast-token')
+        localStorage.removeItem('user-token')
         localStorage.removeItem('username-token');
         localStorage.removeItem('role-token');
         localStorage.removeItem('email-token');

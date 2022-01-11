@@ -34,7 +34,7 @@ export class UtilisateurService {
   }
 
   fetchData(curPage: number, pageSize: number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const userURL = `${URL}/user/all?_page=${curPage}&_limit=${pageSize}`;
     return this.http.get<User[]>(userURL,
       {

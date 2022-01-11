@@ -57,24 +57,28 @@ export class LoginComponent implements OnInit {
       username,
       password
     }
-
-    this.loginService.login(loginParameters).subscribe((res: any) => {
-      if (res){
-        console.log('Login success!');
-        console.log('res',res)
-        localStorage.setItem('itcast-token', res);
-        localStorage.setItem('username-token', res.username);
-        localStorage.setItem('role-token', res.role);
-        localStorage.setItem('email-token', res.email);
-        localStorage.setItem('id-token', res.id);
-        this.router.navigate(['/home'])
-      }else{
-        console.log('Login failed!');
-        console.log(res)
-        this.router.navigate(['/login'])
-      }
+    console.log(localStorage.getItem('user-token'))
+    if (!!localStorage.getItem('user-token')){
+      this.router.navigate(['/login'])
+      this.nzmsgService.info('You have already logged in!',{ nzDuration: 1000});
+    }else {
+      this.loginService.login(loginParameters).subscribe((res: any) => {
+          if (res) {
+            localStorage.setItem('user-token', res);
+            localStorage.setItem('username-token', res.username);
+            localStorage.setItem('role-token', res.role);
+            localStorage.setItem('email-token', res.email);
+            localStorage.setItem('id-token', res.id);
+            this.router.navigate(['/home'])
+            this.nzmsgService.info('Welcome, '+res.username,{nzDuration:1000})
+          } else {
+            console.log(res)
+            this.router.navigate(['/login'])
+            this.nzmsgService.info('Username or password is not valid!', {nzDuration: 1000});
+          }
+        }
+      );
     }
-    );
   }
 
   userAddForm!: FormGroup;

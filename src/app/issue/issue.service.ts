@@ -17,7 +17,7 @@ export class IssueService {
   }
 
   fetchIssueNonChiffre(curPage: number, pageSize: number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const issueURL = `${URL}/issue/issuelist?_page=${curPage}&_limit=${pageSize}`;
     return this.http.get<Issue[]>(issueURL,
       {
@@ -30,7 +30,7 @@ export class IssueService {
   }
 
   fetchIssue(curPage: number, pageSize: number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const issueURL = `${URL}/issue/bytimeorder?_page=${curPage}&_limit=${pageSize}`;
     return this.http.get<Issue[]>(issueURL,
       {
@@ -43,7 +43,7 @@ export class IssueService {
   }
 
   fetchIssueByName(username:string){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const issueURL =  `${URL}/issue/editor?username=${username}`
     return this.http.get<Issue[]>(issueURL,
       {
@@ -55,7 +55,7 @@ export class IssueService {
   }
 
   getIssueId(id:number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const issueURL = `${URL}/issue?id=${id}`;
     return this.http.get<Issue>(issueURL,
       {
@@ -67,7 +67,7 @@ export class IssueService {
   }
 
   editTime(id:number,time:string){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const username = localStorage.getItem('username-token');
     const timeURL = `${URL}/issue/setEstimateTimeFirst?id=${id}&username=${username}&time=${time}`
     return this.http.post(timeURL,
@@ -80,7 +80,7 @@ export class IssueService {
   }
 
   editTimeAdmin(id:number,time:string){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const timeURL = `${URL}/issue/setEstimateTime?id=${id}&time=${time}`
     return this.http.post(timeURL,
       {
@@ -92,7 +92,7 @@ export class IssueService {
   }
 
   validIssue(id:number){
-    const token = localStorage.getItem('itcast-token');
+    const token = localStorage.getItem('user-token');
     const timeURL = `${URL}/issue/valide?id=${id}`
     return this.http.post(timeURL,
       {
