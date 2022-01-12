@@ -6,21 +6,23 @@
     <ul nz-menu nzMode="inline" nzTheme="light" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzTitle="Issues" nzIcon="gitlab">
         <ul>
-          <li nz-menu-item routerLink="/home/issue">Chiffrer</li>
+          <li nz-menu-item routerLink="/home/issue">Issue list</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Utilisateur" nzIcon="user">
-        <ul >
-          <li nz-menu-item routerLink="/home/utilisateur">Liste</li>
-          <li nz-menu-item routerLink="/home/utilisateur/add">Ajouter</li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="Chiffrement" nzIcon="setting">
+      <div [hidden]="showFlag">
+        <li nz-submenu nzTitle="Gestion" nzIcon="user" >
+          <ul >
+            <li nz-menu-item routerLink="/home/utilisateur">User list</li>
+            <li nz-menu-item routerLink="/home/utilisateur/add">Add a user</li>
+          </ul>
+        </li>
+      </div>
+      <li nz-submenu nzTitle="Encryption" nzIcon="setting">
         <ul>
-          <li nz-menu-item routerLink="/home/issue/valid">Valider</li>
+          <li nz-menu-item routerLink="/home/issue/valid">Verify or modify</li>
         </ul>
         <ul>
-          <li nz-menu-item routerLink="/home/issue/user">User</li>
+          <li nz-menu-item routerLink="/home/issue/user">Check user issues</li>
         </ul>
       </li>
     </ul>

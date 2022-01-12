@@ -15,7 +15,17 @@ import {IssueService} from "../issue.service";
 })
 export class UserComponent implements OnInit {
 
-  constructor(private userService: UtilisateurService, private nzmsgService: NzMessageService, private issueServeice: IssueService) { }
+  constructor(private userService: UtilisateurService, private nzmsgService: NzMessageService, private issueServeice: IssueService) {
+    // @ts-ignore
+    this.showFlag = localStorage.getItem('role-token') != 1;
+    const usernameToken = localStorage.getItem('username-token')
+    // @ts-ignore
+    this.issueServeice.fetchIssueByName(usernameToken).subscribe((res: HttpResponse<Issue[]>) => {
+      console.log('Get issues by name', res);
+      // @ts-ignore
+      this.listOfIssue = res.body;
+    })
+  }
 
 
   // @ts-ignore
@@ -24,6 +34,8 @@ export class UserComponent implements OnInit {
   curPage = 1;
   pageSize = 5;
   //total: number;
+
+  showFlag !: boolean;
 
   trackByUserId(id: number, user: User){
     return user.id

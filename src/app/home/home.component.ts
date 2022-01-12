@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   isCollapsed = false;
   username !: string;
+  showFlag !: boolean;
 
   logout() {
     console.log('Try to logout!')
@@ -59,7 +60,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.username = localStorage.getItem('username-token')
-
+    // @ts-ignore
+    this.showFlag = localStorage.getItem('role-token') != 1;
     let beginTime = 0;
     let differTime = 0;
     const interval = 5;

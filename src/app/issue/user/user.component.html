@@ -1,5 +1,7 @@
-<nz-table #listUser [nzData]="listOfUser" [nzFrontPagination]="true"
-          [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
+<nz-table
+  #listUser [nzData]="listOfUser" [nzFrontPagination]="true"
+  [nzPageSize]="pageSize" [nzPageIndex]="curPage"
+  [nzLoading]="false" [hidden] = "showFlag">
   <thead>
   <tr>
     <th>Id</th>
@@ -31,8 +33,8 @@
       <tr>
         <th>Id</th>
         <th>Title</th>
-        <th>Chiffrement</th>
-        <th>Valid</th>
+        <th>Estimate time</th>
+        <th>Validation</th>
         <th>Time</th>
       </tr>
       </thead>
@@ -48,3 +50,26 @@
     </nz-table>
   </ng-container>
 </nz-modal>
+
+<nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
+          [nzPageSize]="pageSize" [nzPageIndex]="curPage"
+          [nzLoading]="false" [hidden]="!showFlag">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Estimate time</th>
+    <th>Validation</th>
+    <th>Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let issue of listIssue.data; let i = index">
+    <td>{{ issue.id }}</td>
+    <td>{{ issue.title }}</td>
+    <td>{{ issue.humanTimeEstimate }}</td>
+    <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
+    <td>{{ issue.time }}</td>
+  </tr>
+  </tbody>
+</nz-table>

@@ -56,11 +56,18 @@
     >
       <span>Role</span>
     </nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your role!" nzHasFeedback>
-      <input nz-input id="role" formControlName="role" />
+    <nz-form-control
+      [nzSm]="14" [nzXs]="24"
+      nzErrorTip="Please input your role!"
+      nzHasFeedback
+    >
+      <input nz-input id="role"
+             formControlName="role"
+             placeholder="Type 1 for admin and 0 for user"
+      />
     </nz-form-control>
   </nz-form-item>
-  <!--add and ret-->
+  <!--add and reset-->
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="20" [nzOffset]="7">
       <button nz-button (click)="addU()">Ajouter</button>
