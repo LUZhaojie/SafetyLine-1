@@ -89,7 +89,10 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchUser();
+    // @ts-ignore
+    if (localStorage.getItem('role-token')==1){
+      this.fetchUser();
+    }
   }
 
 
