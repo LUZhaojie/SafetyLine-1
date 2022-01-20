@@ -70,7 +70,7 @@ export class UserComponent implements OnInit {
         this.listOfIssue = res.body;
       })
     }else {
-      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
     }
   }
 

@@ -5,10 +5,10 @@
   <thead>
   <tr>
     <th>Id</th>
-    <th>Name</th>
+    <th>Nom</th>
     <th>Mail</th>
-    <th>Role</th>
-    <th>Operation</th>
+    <th>Rôle</th>
+    <th>Opération</th>
   </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
     <td>{{ user.id }}</td>
     <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
-    <td>{{ user.role === 1 ? 'Admin' : 'User'}}</td>
+    <td>{{ user.role === 1 ? 'Administrateur' : 'Utilisateur'}}</td>
     <td>
       <a (click)="showModal(user.username)">Voir ses issues</a>
     </td>
@@ -32,10 +32,10 @@
       <thead>
       <tr>
         <th>Id</th>
-        <th>Title</th>
-        <th>Estimate time</th>
+        <th>Titre</th>
+        <th>Temps estimé</th>
         <th>Validation</th>
-        <th>Time</th>
+        <th>Temps modifié</th>
       </tr>
       </thead>
       <tbody>
@@ -57,10 +57,10 @@
   <thead>
   <tr>
     <th>Id</th>
-    <th>Title</th>
-    <th>Estimate time</th>
+    <th>Titre</th>
+    <th>Temps estimé</th>
     <th>Validation</th>
-    <th>Time</th>
+    <th>Temps modifié</th>
   </tr>
   </thead>
   <tbody>

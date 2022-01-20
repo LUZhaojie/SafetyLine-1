@@ -6,23 +6,23 @@
     <ul nz-menu nzMode="inline" nzTheme="light" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzTitle="Issues" nzIcon="gitlab">
         <ul>
-          <li nz-menu-item routerLink="/home/issue">Issue list</li>
+          <li nz-menu-item routerLink="/home/issue">Liste</li>
         </ul>
       </li>
       <div [hidden]="showFlag">
         <li nz-submenu nzTitle="Gestion" nzIcon="user" >
           <ul >
-            <li nz-menu-item routerLink="/home/utilisateur">User list</li>
-            <li nz-menu-item routerLink="/home/utilisateur/add">Add a user</li>
+            <li nz-menu-item routerLink="/home/utilisateur">Utilisateurs</li>
+            <li nz-menu-item routerLink="/home/utilisateur/add">Ajouter un utilisateur</li>
           </ul>
         </li>
       </div>
-      <li nz-submenu nzTitle="Encryption" nzIcon="setting">
+      <li nz-submenu nzTitle="Chiffrage" nzIcon="setting">
         <ul>
-          <li nz-menu-item routerLink="/home/issue/valid">Verify or modify</li>
+          <li nz-menu-item routerLink="/home/issue/valid">Valider ou modifier</li>
         </ul>
         <ul>
-          <li nz-menu-item routerLink="/home/issue/user">Check user issues</li>
+          <li nz-menu-item routerLink="/home/issue/user">Voir les issues</li>
         </ul>
       </li>
     </ul>
@@ -52,9 +52,9 @@
           <nz-avatar nzIcon="user" style="background-color:#ffffff;"></nz-avatar>
           <a
             nz-popconfirm
-            nzPopconfirmTitle="Are you sure to logout?"
-            nzOkText="Ok"
-            nzCancelText="Cancel"
+            nzPopconfirmTitle="Vous êtes sûr de logout?"
+            nzOkText="Valider"
+            nzCancelText="Annuler"
             (nzOnConfirm)="logout()"
             href="#" > &nbsp;
             <i nz-icon nzType="logout" nzTheme="outline"></i>&nbsp;logout

@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
         this.nzmsg.info('All issues are reset!')
       })
     }else{
-      this.nzmsg.info("You dont have the access!",{ nzDuration: 1000});
+      this.nzmsg.info("Vous n\'avez pas le droit de le faire!",{ nzDuration: 1000});
     }
 
   }

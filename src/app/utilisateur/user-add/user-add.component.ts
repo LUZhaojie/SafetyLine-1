@@ -73,7 +73,7 @@ export class UserAddComponent implements OnInit {
     // @ts-ignore
     if (token != 1){
       console.log(token)
-      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
     }else {
       //console.log(addForm)
       // @ts-ignore

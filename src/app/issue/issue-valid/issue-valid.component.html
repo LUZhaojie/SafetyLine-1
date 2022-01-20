@@ -1,42 +1,100 @@
-<nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
-          [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Estimate time</th>
-    <th>Edit Time</th>
-    <th>Validation</th>
-    <th>Operation</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let issue of listIssue.data; let i = index; trackBy: trackByUserId">
-    <td>{{ issue.id }}</td>
-    <td>{{ issue.title }}</td>
-    <td>{{ issue.humanTimeEstimate }}</td>
-    <td>{{ issue.time }}</td>
-    <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
-    <td>
-      <a (click)="showModal(issue.id, issue.updated)">Modify</a>
-      <nz-divider nzType="vertical"></nz-divider>
-      <a
-        nz-popconfirm
-        nzPopconfirmTitle="Are you sure?"
-        nzOkText="ok"
-        nzCancelText="cancel"
-        (nzOnConfirm)="handleValid(issue.id, issue.updated)"
-        (nzOnCancel)="handleValidCan()"
-      >Verify</a>
-    </td>
-  </tr>
-  </tbody>
-</nz-table>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrement" (nzOnCancel)="handleModifierCancel()" (nzOnOk)="handleModifierOk()" nzOkText="Confrim"
-          nzCancelText="Cancel">
-  <ng-container *nzModalContent>
-    <label>
-      <input nz-input placeholder="1d3h" [(ngModel)]="chiffrement" nzHasFeedback/>
-    </label>
-  </ng-container>
-</nz-modal>
+<div [hidden]="!showFlag">
+  <nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
+            [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>Temps estimé</th>
+      <th>Temps modifié</th>
+      <th>Validation</th>
+      <th>Opération</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let issue of listIssue.data; let i = index; trackBy: trackByUserId">
+      <td>{{ issue.id }}</td>
+      <td>{{ issue.title }}</td>
+      <td>{{ issue.humanTimeEstimate }}</td>
+      <td>{{ issue.time }}</td>
+      <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
+      <td>
+        <a (click)="showModal(issue.id, issue.updated)">Modifier</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Vous êtes sûr??"
+          nzOkText="Valider"
+          nzCancelText="Annuler"
+          (nzOnConfirm)="handleValid(issue.id, issue.updated)"
+          (nzOnCancel)="handleValidCan()"
+        >Valider</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="isVisible"
+            nzTitle="Chiffrage"
+            (nzOnCancel)="handleModifierCancel()"
+            (nzOnOk)="handleModifierOk()"
+            nzOkText="Confrimer"
+            nzCancelText="Annuler">
+    <ng-container *nzModalContent>
+      <label>
+        <input nz-input placeholder="1d3h" [(ngModel)]="chiffrement" nzHasFeedback/>
+      </label>
+    </ng-container>
+  </nz-modal>
+</div>
+
+
+<div [hidden]="showFlag">
+  <nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
+            [nzPageSize]="pageSize" [nzPageIndex]="curPage" [nzLoading]="false">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>Temps estimé</th>
+      <th>Temps modifié</th>
+      <th>Editeur</th>
+      <th>Validation</th>
+      <th>Opération</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let issue of listIssue.data; let i = index; trackBy: trackByUserId">
+      <td>{{ issue.id }}</td>
+      <td>{{ issue.title }}</td>
+      <td>{{ issue.humanTimeEstimate }}</td>
+      <td>{{ issue.time }}</td>
+      <td>{{ issue.editor}}</td>
+      <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
+      <td>
+        <a (click)="showModal(issue.id, issue.updated)">Modifier</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="Vous êtes sûr?"
+          nzOkText="Valider"
+          nzCancelText="Annuler"
+          (nzOnConfirm)="handleValid(issue.id, issue.updated)"
+          (nzOnCancel)="handleValidCan()"
+        >Verifier</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="isVisible"
+            nzTitle="Chiffrage"
+            (nzOnCancel)="handleModifierCancel()"
+            (nzOnOk)="handleModifierOk()"
+            nzOkText="Confrimer"
+            nzCancelText="Annuler">
+    <ng-container *nzModalContent>
+      <label>
+        <input nz-input placeholder="1d3h" [(ngModel)]="chiffrement" nzHasFeedback/>
+      </label>
+    </ng-container>
+  </nz-modal>
+</div>

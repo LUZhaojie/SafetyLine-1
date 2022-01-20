@@ -39,15 +39,16 @@ export class IssueValidComponent implements OnInit {
   }
 
   isVisible = false;
+  showFlag!: boolean;
 
   showModal(id:number, updated:number): void {
     const roleToken = localStorage.getItem('role-token')
     // @ts-ignore
     if (roleToken != 1){
-      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
     }else {
       if (updated == 1){
-        this.nzmsgService.info('This task cant be modified!',{ nzDuration: 1000});
+        this.nzmsgService.info('Cette issue n\'est peut pas être modifié!',{ nzDuration: 1000});
       }
       else{
         this.isVisible = true;
@@ -70,41 +71,43 @@ export class IssueValidComponent implements OnInit {
       }
     }
     this.isVisible = false;
-    this.nzmsgService.info('Verify modification', {nzDuration:1000});
+    this.nzmsgService.info('Valider la modification', {nzDuration:1000});
     location.reload();
   }
 
   handleModifierCancel(): void {
     this.isVisible = false;
-    this.nzmsgService.info('Cancel modification', {nzDuration:1000});
+    this.nzmsgService.info('Annuler la modification', {nzDuration:1000});
   }
 
   handleValid(id:number,updated:number): void{
     const token = localStorage.getItem('role-token')
     // @ts-ignore
     if (token != 1){
-      this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
     }else {
       if (updated == 1){
-        this.nzmsgService.info('This task has been valid!',{ nzDuration: 1000});
+        this.nzmsgService.info('Cette issue a été validé',{ nzDuration: 1000});
       }
       else {
         this.issueService.validIssue(id).subscribe(res => {
           console.log(res);
         })
         this.fetchIssue()
-        this.nzmsgService.info('Verify validation', {nzDuration: 1000});
+        this.nzmsgService.info('Verifier la validation', {nzDuration: 1000});
         location.reload();
       }
     }
   }
 
   handleValidCan(): void{
-    this.nzmsgService.info('Cancel validation', {nzDuration:1000});
+    this.nzmsgService.info('Annuler la validation', {nzDuration:1000});
   }
 
   ngOnInit(): void {
     this.fetchIssue();
+    // @ts-ignore
+    this.showFlag = localStorage.getItem('role-token')!= 1;
   }
 
 }

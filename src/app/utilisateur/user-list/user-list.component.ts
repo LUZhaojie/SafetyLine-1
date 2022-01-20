@@ -53,11 +53,11 @@ export class UserListComponent implements OnInit {
     const id_token = localStorage.getItem('id-token')
     // @ts-ignore
     if (id == id_token){
-      this.nzmsgService.info('You can not change your role!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous ne pouvez pas changer votre rôle',{ nzDuration: 1000});
     }else{
       // @ts-ignore
       if (token != 1){
-        this.nzmsgService.info('You do not have the access!',{ nzDuration: 1000});
+        this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
       }else{
         this.userService.changeRoleUser(id).subscribe(res=>{
           console.log('Change role', id);
@@ -70,7 +70,7 @@ export class UserListComponent implements OnInit {
 
   handleRoleCan() {
     console.log('Cancel change role!');
-    this.nzmsgService.info('Cancel delete!',{ nzDuration: 1000});
+    this.nzmsgService.info('Annuler la suppression!',{ nzDuration: 1000});
   }
 
   trackByUserId(id: number, user: User){

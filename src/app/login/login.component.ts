@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     console.log(localStorage.getItem('user-token'))
     if (!!localStorage.getItem('user-token')){
       this.router.navigate(['/login'])
-      this.nzmsgService.info('You have already logged in!',{ nzDuration: 1000});
+      this.nzmsgService.info('Vous avez login!',{ nzDuration: 1000});
     }else {
       this.loginService.login(loginParameters).subscribe((res: any) => {
           if (res) {
@@ -70,11 +70,11 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('email-token', res.email);
             localStorage.setItem('id-token', res.id);
             this.router.navigate(['/home'])
-            this.nzmsgService.info('Welcome, '+res.username,{nzDuration:1000})
+            this.nzmsgService.info('Bienvenue, '+res.username,{nzDuration:1000})
           } else {
             console.log(res)
             this.router.navigate(['/login'])
-            this.nzmsgService.info('Username or password is not valid!', {nzDuration: 1000});
+            this.nzmsgService.info('Le nom ou mot de passe n\'est pas valide!', {nzDuration: 1000});
           }
         }
       );
@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
   }
 
   CancelRegister(){
-    this.nzmsgService.info("Cancel register!",{nzDuration:1000})
+    this.nzmsgService.info("Annuler d'insrire!",{nzDuration:1000})
     this.isVisible = false
   }
 

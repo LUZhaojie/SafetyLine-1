@@ -3,9 +3,9 @@
   <thead>
   <tr>
     <th>Id</th>
-    <th>Title</th>
+    <th>Titre</th>
     <th>Description</th>
-    <th>Operation</th>
+    <th>Opération</th>
   </tr>
   </thead>
   <tbody>
@@ -14,16 +14,16 @@
     <td>{{ issue.title }}</td>
     <td>{{ issue.description }}</td>
     <td>
-      <a (click)="showModal(issue.id)">Encrypt</a>
+      <a (click)="showModal(issue.id)">Chiffrer</a>
     </td>
   </tr>
   </tbody>
 </nz-table>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrement"
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrage"
           (nzOnCancel)="handleCancel()"
           (nzOnOk)="handleOk()"
-          nzOkText="Confrim"
-          nzCancelText="Cancel">
+          nzOkText="Confrimer"
+          nzCancelText="Annuler">
   <ng-container *nzModalContent>
     <label>
       <input nz-input placeholder="Exemple: 1w3d4h" [(ngModel)]="chiffrement" nzHasFeedback/>
