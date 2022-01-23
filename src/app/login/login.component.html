@@ -25,14 +25,17 @@
   </nz-form-item>
   <div nz-row class="login-form-margin">
     <div nz-col [nzSpan]="18">
-      <a (click)="showRegisterForm()">S'insrire!</a>
+      <a (click)="showRegisterForm()">S'inscrire!</a>
     </div>
   </div>
   <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Login</button>
 </form>
 </div>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Register" (nzOnCancel)="CancelRegister()" (nzOnOk)="register()" nzOkText="Confrim"
-          nzCancelText="Cancel">
+<nz-modal [(nzVisible)]="isVisible"
+          nzTitle="Register" (nzOnCancel)="CancelRegister()"
+          (nzOnOk)="register()"
+          nzOkText="Confirmer"
+          nzCancelText="Annuler">
   <ng-container *nzModalContent>
     <form nz-form [formGroup]="userAddForm" (ngSubmit)="submitForm()">
       <!--username -->
