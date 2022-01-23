@@ -8,7 +8,6 @@
       <th>Temps estimé</th>
       <th>Temps modifié</th>
       <th>Validation</th>
-      <th>Opération</th>
     </tr>
     </thead>
     <tbody>
@@ -18,18 +17,6 @@
       <td>{{ issue.humanTimeEstimate }}</td>
       <td>{{ issue.time }}</td>
       <td>{{ issue.updated === 1 ? 'Valid' : 'Non'}} </td>
-      <td>
-        <a (click)="showModal(issue.id, issue.updated)">Modifier</a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a
-          nz-popconfirm
-          nzPopconfirmTitle="Vous êtes sûr??"
-          nzOkText="Valider"
-          nzCancelText="Annuler"
-          (nzOnConfirm)="handleValid(issue.id, issue.updated)"
-          (nzOnCancel)="handleValidCan()"
-        >Valider</a>
-      </td>
     </tr>
     </tbody>
   </nz-table>
