@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
     this.username = localStorage.getItem('username-token')
     // @ts-ignore
     this.showFlag = localStorage.getItem('role-token') != 1;
+    this.router.navigate(['/home/issue'])
     let beginTime = 0;
     let differTime = 0;
     const interval = 5;
