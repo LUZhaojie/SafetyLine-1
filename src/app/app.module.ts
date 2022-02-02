@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
-import { zh_CN } from 'ng-zorro-antd/i18n';
+import { fr_FR } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { FormsModule } from '@angular/forms';
@@ -62,7 +62,7 @@ registerLocaleData(zh);
         NzRadioModule
     ],
   providers: [
-    { provide: NZ_I18N, useValue: zh_CN},
+    { provide: NZ_I18N, useValue: fr_FR},
     { provide: NzMessageService},
     { provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

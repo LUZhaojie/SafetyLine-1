@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     }
     console.log(localStorage.getItem('user-token'))
     if (!!localStorage.getItem('user-token')){
-      this.router.navigate(['/login'])
+      this.router.navigate(['/home'])
       this.nzmsgService.info('Vous avez login!',{ nzDuration: 1000});
     }else {
       this.loginService.login(loginParameters).subscribe((res: any) => {

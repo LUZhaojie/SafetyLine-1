@@ -68,11 +68,14 @@ export class IssueValidComponent implements OnInit {
           console.log(this.id,this.chiffrement)
         })
         this.fetchIssue()
+        this.isVisible = false;
+        this.nzmsgService.info('Valider la modification', {nzDuration:1000});
+        location.reload();
       }
+    }else{
+      this.isVisible = false;
+      this.nzmsgService.info('L\'entrée ne peut pas être vide', {nzDuration:1000});
     }
-    this.isVisible = false;
-    this.nzmsgService.info('Valider la modification', {nzDuration:1000});
-    location.reload();
   }
 
   handleModifierCancel(): void {
