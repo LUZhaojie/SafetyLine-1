@@ -24,7 +24,7 @@
   </tbody>
 </nz-table>
 
-<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrement" (nzOnCancel)="handleModifierCancel()" (nzOnOk)="handleModifierOk()" nzOkText="Confrim"
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Chiffrage" (nzOnCancel)="handleModifierCancel()" (nzOnOk)="handleModifierOk()" nzOkText="Confrim"
           nzCancelText="Exit">
   <ng-container *nzModalContent>
     <nz-table #listIssue [nzData]="listOfIssue" [nzFrontPagination]="true"
