@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/home'])
             this.nzmsgService.info('Bienvenue, '+res.username,{nzDuration:1000})
           } else {
-            console.log(res)
+            //console.log(res)
             this.router.navigate(['/login'])
             this.nzmsgService.info('Le nom ou mot de passe n\'est pas valide!', {nzDuration: 1000});
           }
@@ -126,7 +126,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.userService.addUser(addForm).subscribe((res: any) => {
-      console.log('Add user ', res);
+      //console.log('Add user ', res);
     })
     this.isVisible = false;
   }

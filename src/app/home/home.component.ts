@@ -19,13 +19,13 @@ export class HomeComponent implements OnInit {
   showFlag !: boolean;
 
   logout() {
-    console.log('Try to logout!')
+    //console.log('Try to logout!')
     localStorage.removeItem('user-token')
     localStorage.removeItem('username-token');
     localStorage.removeItem('role-token');
     localStorage.removeItem('email-token');
     localStorage.removeItem('id-token');
-    console.log('Exit success!');
+    //console.log('Exit success!');
     this.router.navigate(['/login']);
     /*
     this.homeService.logout().subscribe(
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     // @ts-ignore
     if (role==1){
       this.homeService.reset().subscribe(res =>{
-        console.log("Reset all issues!")
+        //console.log("Reset all issues!")
         this.nzmsg.info('All issues are reset!')
       })
     }else{
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
         localStorage.removeItem('email-token');
         localStorage.removeItem('id-token');
       } else {
-        console.log("F5");
+        //console.log("F5");
       }
     };
     window.onbeforeunload = function () {

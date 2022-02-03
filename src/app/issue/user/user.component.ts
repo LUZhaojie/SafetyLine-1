@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
     const usernameToken = localStorage.getItem('username-token')
     // @ts-ignore
     this.issueServeice.fetchIssueByName(usernameToken).subscribe((res: HttpResponse<Issue[]>) => {
-      console.log('Get issues by name', res);
+      //console.log('Get issues by name', res);
       // @ts-ignore
       this.listOfIssue = res.body;
     })
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
   fetchUser(){
     this.userService.fetchData(this.curPage,this.pageSize).subscribe((res: HttpResponse<User[]>)=>
     {
-      console.log('Get data ',res);
+      //console.log('Get data ',res);
       //this.total = +res.headers.get('X-Total-Count');
       // @ts-ignore
       this.listOfUser = res.body;
@@ -65,7 +65,7 @@ export class UserComponent implements OnInit {
     if (usernameToken == username || roleToken == 1 ){
       this.isVisible = true;
       this.issueServeice.fetchIssueByName(username).subscribe((res: HttpResponse<Issue[]>) => {
-        console.log('Get issues by name', res);
+        //console.log('Get issues by name', res);
         // @ts-ignore
         this.listOfIssue = res.body;
       })

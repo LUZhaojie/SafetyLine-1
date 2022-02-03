@@ -24,12 +24,12 @@ export class IssueListComponent implements OnInit {
   fetchIssue(){
 
     this.issueService.refreshIssue().subscribe(res=>{
-      console.log(res)
+      //console.log(res)
     })
 
     this.issueService.fetchIssueNonChiffre(this.curPage,this.pageSize).subscribe((res: HttpResponse<Issue[]>)=>
     {
-      console.log('Get data ',res);
+      //console.log('Get data ',res);
       //this.total = +res.headers.get('X-Total-Count');
       // @ts-ignore
       this.listOfIssue = res.body;
@@ -55,7 +55,7 @@ export class IssueListComponent implements OnInit {
     if (this.chiffrement != null) {
       if (this.id != null) {
         this.issueService.editTime(this.id, this.chiffrement).subscribe(res => {
-          console.log(res)
+          //console.log(res)
         })
       }
     }

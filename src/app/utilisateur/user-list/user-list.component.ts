@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit {
         this.nzmsgService.info('You can not delete yourself!',{ nzDuration: 1000})
       }else {
         this.userService.delUser(id).subscribe(res => {
-          console.log('Delete!', id);
+          //console.log('Delete!', id);
           // @ts-ignore
           this.listOfUser = this.listOfUser.filter(user => user.id !== id);
         })
@@ -44,7 +44,7 @@ export class UserListComponent implements OnInit {
   }
 
   handleDelCan(){
-    console.log('Cancel delete!');
+    //console.log('Cancel delete!');
     this.nzmsgService.info('Cancel delete!',{ nzDuration: 1000});
   }
 
@@ -60,7 +60,7 @@ export class UserListComponent implements OnInit {
         this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
       }else{
         this.userService.changeRoleUser(id).subscribe(res=>{
-          console.log('Change role', id);
+          //console.log('Change role', id);
         })
         this.fetchUser()
         location.reload()
@@ -69,7 +69,7 @@ export class UserListComponent implements OnInit {
   }
 
   handleRoleCan() {
-    console.log('Cancel change role!');
+    //console.log('Cancel change role!');
     this.nzmsgService.info('Annuler la suppression!',{ nzDuration: 1000});
   }
 
@@ -81,7 +81,7 @@ export class UserListComponent implements OnInit {
   fetchUser(){
     this.userService.fetchData(this.curPage,this.pageSize).subscribe((res: HttpResponse<User[]>)=>
     {
-      console.log('Get data ',res);
+      //console.log('Get data ',res);
       //this.total = +res.headers.get('X-Total-Count');
       // @ts-ignore
       this.listOfUser = res.body;

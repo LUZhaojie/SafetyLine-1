@@ -72,7 +72,7 @@ export class UserAddComponent implements OnInit {
     const token = localStorage.getItem('role-token')
     // @ts-ignore
     if (token != 1){
-      console.log(token)
+      //console.log(token)
       this.nzmsgService.info('Vous n\'avez pas le droit de le faire!',{ nzDuration: 1000});
     }else {
       //console.log(addForm)
